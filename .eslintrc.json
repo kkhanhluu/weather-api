@@ -46,7 +46,13 @@
     "no-use-before-define": "warn",
     "no-param-reassign": "warn",
     "no-redeclare": "off",
-    "@typescript-eslint/no-redeclare": ["error"]
+    "@typescript-eslint/no-redeclare": ["error"],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@/features/*/*"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
