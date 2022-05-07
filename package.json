@@ -11,7 +11,7 @@
     "prebuild": "npm run swagger",
     "start:dev": "ts-node-dev --respawn --transpile-only --inspect=0.0.0.0 ./src/server.ts",
     "build": "tsc",
-    "test": "jest --passWithNoTests",
+    "test": "jest --runInBand --detectOpenHandles",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier **/*.{js,ts,json} --check",
@@ -26,8 +26,10 @@
     "helmet": "^5.0.2",
     "mongoose": "^6.3.2",
     "morgan": "~1.10.0",
+    "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.3.0",
-    "tsoa": "^4.0.0"
+    "tsoa": "^4.0.0",
+    "typedi": "^0.10.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
@@ -48,6 +50,7 @@
     "husky": "^7.0.4",
     "jest": "^28.0.3",
     "lint-staged": "^12.4.1",
+    "mongodb-memory-server": "^8.5.2",
     "prettier": "^2.6.2",
     "ts-jest": "^28.0.1",
     "ts-node": "^10.7.0",
