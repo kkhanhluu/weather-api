@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
 import { default as logger, default as morgan } from 'morgan';
 import swaggerUi from 'swagger-ui-express';
-import { router as CityRouter } from './features/cities/routes';
+import { router as CityRouter } from './components/cities/routes';
 import healthRouter from './routes/health';
 
 dotenv.config();
@@ -36,3 +36,7 @@ app.use(
 );
 
 app.use('/cities', CityRouter);
+
+app.use((err: any, _: Request, res: Response, __: NextFunction) =>
+  res.status(err.statusCode).json({ code: err.codeString, message: err.message }),
+);

@@ -35,7 +35,15 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "class-methods-use-this": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
     "no-plusplus": "off",
     "no-console": [
       "warn",
@@ -52,7 +60,8 @@
       {
         "patterns": ["@/features/*/*"]
       }
-    ]
+    ],
+    "consistent-return": "off"
   },
   "settings": {
     "import/resolver": {
