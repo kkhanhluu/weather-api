@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+  node:
+    depends_on:
+      - mongo
+    build:
+      context: .
+      target: development
+    image: weather-api:development
+    environment:
+      - DEBUG=express-api:*
+      - TERMINATION_GRACE_PERIOD=0
+    ports:
+      - '4000:4000'
+      - '9229:9229'
+volumes:
+  db:

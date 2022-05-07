@@ -1,0 +1,56 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": ["airbnb-base", "plugin:import/typescript", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "require-await": "warn",
+    "import/prefer-default-export": "off",
+    "import/no-named-default": "off",
+    "import/no-cycle": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "import/no-unresolved": "off",
+    "no-shadow": "off",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-plusplus": "off",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "no-use-before-define": "warn",
+    "no-param-reassign": "warn",
+    "no-redeclare": "off",
+    "@typescript-eslint/no-redeclare": ["error"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
