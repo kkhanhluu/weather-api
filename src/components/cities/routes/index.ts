@@ -26,3 +26,13 @@ router.get('/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+router.get('/:id/weather', async (req, res, next) => {
+  try {
+    const controller = Container.get(CityController);
+    const weather = await controller.getWeatherByCityId(Number(req.params.id));
+    return res.status(200).json(weather);
+  } catch (err: any) {
+    next(err);
+  }
+});

@@ -4,7 +4,7 @@ import { CityGetByIdDTO, CityGetByLocationDTO, CityModel } from '../models';
 
 @Service()
 export class CityService {
-  public async getById(id: number): Promise<CityGetByIdDTO> {
+  public async getCityById(id: number): Promise<CityGetByIdDTO> {
     const city = await CityModel.findOne({ id }, { _id: 0 }).lean().exec();
     if (!city) {
       throw new AppError(404, StatusCodes.NOT_FOUND, 'not found');
