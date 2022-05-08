@@ -55,7 +55,7 @@ describe('City service', () => {
       // Arrange
       const spy = jest.spyOn(CityModel, 'findOne');
       // Act
-      const city = await cityService.getById(mockCities[0].id);
+      const city = await cityService.getCityById(mockCities[0].id);
 
       // Assert
       expect(city).toEqual({
@@ -71,7 +71,7 @@ describe('City service', () => {
       // Arrange
       const spy = jest.spyOn(CityModel, 'findOne');
       // Assert
-      expect(cityService.getById(-1)).rejects.toMatchObject(
+      expect(cityService.getCityById(-1)).rejects.toMatchObject(
         new AppError(404, StatusCodes.NOT_FOUND, 'not found'),
       );
       expect(spy).toHaveBeenCalledWith({ id: -1 }, { _id: 0 });

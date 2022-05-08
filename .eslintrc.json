@@ -51,7 +51,7 @@
         "allow": ["warn", "error"]
       }
     ],
-    "no-use-before-define": "warn",
+    "no-use-before-define": "off",
     "no-param-reassign": "warn",
     "no-redeclare": "off",
     "@typescript-eslint/no-redeclare": ["error"],
@@ -61,7 +61,9 @@
         "patterns": ["@/features/*/*"]
       }
     ],
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "camelcase": "off",
+    "dot-notation": "off"
   },
   "settings": {
     "import/resolver": {
