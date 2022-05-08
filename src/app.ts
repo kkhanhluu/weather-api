@@ -1,9 +1,11 @@
 import dotenv from 'dotenv';
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import helmet from 'helmet';
 import { default as logger, default as morgan } from 'morgan';
 import swaggerUi from 'swagger-ui-express';
-import { router as CityRouter } from './components/cities/routes';
+import { RegisterRoutes } from '../public/routes';
+import { globalErrorHandler } from './utils/globalErrorHandler';
+import { notFoundHandler } from './utils/notFoundHandler';
 
 dotenv.config();
 
@@ -32,8 +34,7 @@ app.use(
   }),
 );
 
-app.use('/cities', CityRouter);
+RegisterRoutes(app);
 
-app.use((err: any, _: Request, res: Response, __: NextFunction) =>
-  res.status(err.statusCode).json({ code: err.codeString, message: err.message }),
-);
+app.use(notFoundHandler);
+app.use(globalErrorHandler);
