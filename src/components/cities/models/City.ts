@@ -1,12 +1,12 @@
 import { model, Schema } from 'mongoose';
-import { Coordinate } from './Coordinate';
+import { Location } from './Location';
 
 export interface City {
   id: number;
   name: string;
   state?: string;
   country?: string;
-  coord: Coordinate;
+  location: Location;
 }
 
 const citySchema = new Schema<City>(
@@ -15,13 +15,17 @@ const citySchema = new Schema<City>(
     name: { type: String, required: true },
     state: { type: String },
     country: { type: String },
-    coord: new Schema(
-      {
-        lat: { type: Number, required: true },
-        lon: { type: Number, required: true },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
       },
-      { _id: false },
-    ),
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    },
   },
   { versionKey: false },
 );

@@ -4,7 +4,6 @@ import helmet from 'helmet';
 import { default as logger, default as morgan } from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import { router as CityRouter } from './components/cities/routes';
-import healthRouter from './routes/health';
 
 dotenv.config();
 
@@ -22,8 +21,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
-
-app.use('/health', healthRouter);
 
 app.use(
   '/docs',
