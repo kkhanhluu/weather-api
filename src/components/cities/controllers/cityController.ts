@@ -15,6 +15,7 @@ export class CityController extends Controller {
   /**
    *
    * Retrieves the information of a city by id
+   * @example id 2938913
    */
   @Get('/:id')
   @Example<CityGetByIdDTO>({
@@ -32,6 +33,8 @@ export class CityController extends Controller {
    *  lat and lng params are required.
    * @param lat latitude. Required
    * @param lng longitude. Required
+   * @example lat 49.48
+   * @example lng 8.46
    */
   @Get('/')
   @Example<CityGetByLocationDTO>({
@@ -47,6 +50,7 @@ export class CityController extends Controller {
 
   /**
    * Retrieve the weather data for a city by city id
+   * @example id 2938913
    */
   @Get('/:id/weather')
   @Example<WeatherGetByCityIdDTO>({

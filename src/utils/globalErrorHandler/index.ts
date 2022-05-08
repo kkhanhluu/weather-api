@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { AppError } from '../components/core/types';
+import { AppError } from '../../components/core/types';
 
 export function globalErrorHandler(error: unknown, _: Request, res: Response, next: NextFunction) {
   if (error instanceof AppError) {

@@ -55,12 +55,7 @@
     "no-param-reassign": "warn",
     "no-redeclare": "off",
     "@typescript-eslint/no-redeclare": ["error"],
-    "no-restricted-imports": [
-      "error",
-      {
-        "patterns": ["@/features/*/*"]
-      }
-    ],
+    "no-restricted-imports": ["error"],
     "consistent-return": "off",
     "camelcase": "off",
     "dot-notation": "off"
