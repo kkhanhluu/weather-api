@@ -1,6 +1,6 @@
-import { Controller, Get, Path, Route } from 'tsoa';
+import { Controller, Get, Path, Query, Route } from 'tsoa';
 import { Service } from 'typedi';
-import { City } from '../models/City';
+import { CityGetByIdDTO, CityGetByLocationDTO } from '../models';
 import { CityService } from '../services/cityService';
 
 @Service()
@@ -11,7 +11,15 @@ export class CityController extends Controller {
   }
 
   @Get('/:id')
-  public getCityById(@Path() id: number): Promise<City> {
+  public getCityById(@Path() id: number): Promise<CityGetByIdDTO> {
     return this.cityService.getById(id);
+  }
+
+  @Get('/')
+  public getCitiesBasedOnLocation(
+    @Query() latitude?: string,
+    @Query() longitude?: string,
+  ): Promise<CityGetByLocationDTO[]> {
+    return this.cityService.getCitiesBasedOnLocation(latitude, longitude);
   }
 }

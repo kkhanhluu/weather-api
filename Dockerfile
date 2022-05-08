@@ -1,16 +1,16 @@
 ###
-FROM node:16-alpine as parent
+FROM node:16 as parent
 
 ###
 FROM parent as build
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock tsconfig.json ./
+COPY package.json yarn.lock tsconfig.json tsoa.json ./
 COPY src/ ./src/
 
-RUN npm install 
-RUN npm run build
+RUN yarn 
+RUN yarn run build
 
 ###
 FROM parent as base
@@ -25,10 +25,10 @@ EXPOSE 4000
 FROM base as test
 ENV NODE_ENV=test
 
-COPY --chown=node:node jest.config.ts ./
+COPY --chown=node:node jest.config.js ./
 COPY --chown=node:node test/ ./test/
 
-CMD [ "npm", "run", "test" ]
+CMD [ "yarn", "run", "test" ]
 
 ###
 FROM base as development
@@ -36,7 +36,7 @@ ENV NODE_ENV=development
 
 EXPOSE 4400
 
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "yarn", "run", "start:dev" ]
 
 ###
 FROM parent
