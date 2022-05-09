@@ -21,7 +21,7 @@ services:
       - DEBUG=weather-api:*
       - MONGO_DB_URI=mongodb://mongo:27017/weather-api
       - PORT=4000
-      - OPEN_WEATHER_API_KEY=<your-open-weather-map-api>
+      - OPEN_WEATHER_API_KEY=<your-openweathermap-api-key>
     ports:
       - '4000:4000'
 volumes:
