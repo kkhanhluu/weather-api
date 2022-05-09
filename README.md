@@ -61,7 +61,7 @@ MONGO_DB_URI=mongodb://<hostname>:<port>/<database-name>
 - Run `yarn add` to install dependencies
 - Run `yarn start` to start the server or `yarn run start:dev` for live reloading
 
-When the server starts at the first time, it can take few minutes because of the `seeding database script`.
+When the server starts at the first time, it can take few minutes because of the [seeding database script](https://github.com/kkhanhluu/weather-api/blob/main/src/utils/seedDb/index.ts).
 
 ## Testing the server
 

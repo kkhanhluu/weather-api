@@ -1,10 +1,10 @@
-import Debug from 'debug';
 import { Document } from 'mongoose';
 import https from 'node:https';
 import zlip from 'node:zlib';
 import { chain } from 'stream-chain';
 import { withParser } from 'stream-json/streamers/StreamArray';
 import { CityModel } from '../../components/cities/models';
+import { logger } from '../logger';
 
 interface CityFromFile {
   id: number;
@@ -21,8 +21,6 @@ interface ReadFileResult {
   key: number;
   value: CityFromFile;
 }
-
-const debug = Debug('Weather API');
 
 export function seedDb(): Promise<boolean> {
   return new Promise((resolve, reject) => {
@@ -60,7 +58,7 @@ export function seedDb(): Promise<boolean> {
         pipeline.on('end', async () => {
           await Promise.all(promises);
           const endTime = process.hrtime(start);
-          debug(`Finish seeding db in ${endTime[0]} seconds. Added ${counter} records`);
+          logger.info(`Finish seeding db in ${endTime[0]} seconds. Added ${counter} records`);
           resolve(true);
         });
 
