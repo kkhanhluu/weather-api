@@ -1,5 +1,6 @@
-// src/mocks/handlers.js
 import { rest } from 'msw';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export const handlers = [
   rest.get('https://api.openweathermap.org/data/2.5/weather', (req, res, ctx) =>
@@ -50,4 +51,8 @@ export const handlers = [
       }),
     ),
   ),
+  rest.get('https://bulk.openweathermap.org/sample/city.list.min.json.gz', (req, res, ctx) => {
+    const buffer = fs.readFileSync(path.resolve(__dirname, './city.list.test.json.gz'));
+    return res(ctx.status(201), ctx.body(buffer));
+  }),
 ];
