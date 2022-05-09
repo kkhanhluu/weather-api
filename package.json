@@ -6,10 +6,10 @@
   "author": "Khanh Luu",
   "license": "MIT",
   "scripts": {
-    "prestart": "yarn run tsoa routes",
+    "prestart": "yarn run tsoa spec-and-routes",
     "start": "ts-node ./src/server.ts",
     "start:dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
-    "prebuild": "yarn run tsoa routes",
+    "prebuild": "yarn run tsoa spec-and-routes",
     "build": "tsc",
     "test": "jest --runInBand --detectOpenHandles",
     "lint": "eslint . --ext .js,.ts",

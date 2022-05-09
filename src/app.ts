@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import { default as logger, default as morgan } from 'morgan';
 import swaggerUi from 'swagger-ui-express';
@@ -24,14 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-app.use(
-  '/docs',
-  swaggerUi.serve,
-  swaggerUi.setup(undefined, {
-    swaggerOptions: {
-      url: '../swagger.json',
-    },
-  }),
+app.use('/docs', swaggerUi.serve, async (_req: Request, res: Response) =>
+  res.send(swaggerUi.generateHTML(await import('../public/swagger.json'))),
 );
 
 RegisterRoutes(app);
