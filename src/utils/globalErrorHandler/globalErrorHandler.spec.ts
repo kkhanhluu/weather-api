@@ -40,4 +40,16 @@ describe('Global error handler middleware', () => {
     expect(mockResponse.status).toHaveBeenCalledWith(500);
     expect(jsonMockFunction).toHaveBeenCalledWith({ message: 'Internal server error' });
   });
+
+  it('should call next function', () => {
+    // Act
+    globalErrorHandler(
+      expect.any(String),
+      mockRequest as Request,
+      mockResponse as Response,
+      nextFunction,
+    );
+    // Assert
+    expect(nextFunction).toHaveBeenCalled();
+  });
 });

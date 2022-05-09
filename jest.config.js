@@ -6,4 +6,5 @@ module.exports = {
   globalSetup: '<rootDir>/test/globalSetup.ts',
   globalTeardown: '<rootDir>/test/globalTeardown.ts',
   setupFilesAfterEnv: ['<rootDir>/test/setupFile.ts'],
+  coveragePathIgnorePatterns: ['<rootDir>/public'],
 };
