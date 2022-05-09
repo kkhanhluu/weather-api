@@ -11,7 +11,7 @@
     "start:dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "prebuild": "yarn run tsoa spec-and-routes",
     "build": "tsc",
-    "test": "jest --runInBand --detectOpenHandles",
+    "test": "jest --runInBand",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier **/*.{js,ts,json} --check",
