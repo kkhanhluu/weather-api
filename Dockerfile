@@ -27,6 +27,9 @@ ENV NODE_ENV=test
 
 COPY --chown=node:node jest.config.js ./
 COPY --chown=node:node test/ ./test/
+COPY --chown=node:node mocks/ ./mocks/
+
+RUN yarn run test
 
 CMD [ "yarn", "run", "test" ]
 
