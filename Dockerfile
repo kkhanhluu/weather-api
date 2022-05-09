@@ -13,41 +13,31 @@ RUN yarn
 RUN yarn run build
 
 ###
-FROM parent as base
-
-WORKDIR /home/node/app
-
-COPY --from=build --chown=node:node /usr/src/app/ ./
-
-EXPOSE 4000
-
-###
-FROM base as test
+FROM parent as test
 ENV NODE_ENV=test
 
+ARG SKIP_TESTS=false
+
+COPY package.json yarn.lock tsconfig.json tsoa.json ./
+COPY src/ ./src/
 COPY --chown=node:node jest.config.js ./
 COPY --chown=node:node test/ ./test/
 COPY --chown=node:node mocks/ ./mocks/
 
-RUN yarn run test
+RUN yarn
+RUN if [ "${SKIP_TESTS}" != "true" ]; then npm run test; fi
 
 CMD [ "yarn", "run", "test" ]
 
 ###
-FROM base as development
+FROM parent as development
 ENV NODE_ENV=development
 
-EXPOSE 4400
+COPY package.json yarn.lock tsconfig.json tsoa.json ./
+COPY src/ ./src/
 
-CMD [ "yarn", "run", "start:dev" ]
+RUN yarn 
 
-###
-FROM parent
-ENV NODE_ENV=production
+EXPOSE 4000
 
-WORKDIR /home/node/app
-
-COPY --from=build --chown=node:node /usr/src/app/dist/ ./dist/
-COPY --from=build --chown=node:node /usr/src/app/node_modules/ ./node_modules/
-
-CMD [ "node", "./dist/index.js" ]
+CMD [ "yarn", "run", "start" ]

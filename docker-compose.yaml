@@ -6,18 +6,23 @@ services:
       - 27017:27017
     volumes:
       - db:/data/db
+
   node:
     depends_on:
       - mongo
     build:
       context: .
       target: development
+      args:
+        - SKIP_TESTS=true
     image: weather-api:development
     environment:
-      - DEBUG=express-api:*
-      - TERMINATION_GRACE_PERIOD=0
+      - NODE_ENV=development
+      - DEBUG=weather-api:*
+      - MONGO_DB_URI=mongodb://mongo:27017/weather-api
+      - PORT=4000
+      - OPEN_WEATHER_API_KEY=<your-open-weather-map-api>
     ports:
       - '4000:4000'
-      - '9229:9229'
 volumes:
   db:

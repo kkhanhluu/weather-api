@@ -1,0 +1,19 @@
+FROM node:lts-alpine
+
+WORKDIR /app
+
+COPY ./dist/src ./
+
+# Set environment variables 
+ENV PORT=4000
+ENV NODE_ENV=production
+
+# Informs Docker that the container listens on the
+# specified network ports at runtime
+EXPOSE ${PORT}
+
+# Install dependency
+RUN yarn install --production
+
+# Command container will actually run when called
+CMD ["node", ".src/server.js"]

@@ -8,9 +8,10 @@
   "scripts": {
     "prestart": "yarn run tsoa spec-and-routes",
     "start": "ts-node ./src/server.ts",
-    "start:dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "start:dev": "concurrently \"nodemon ./src/server.ts --watch ./src/* -e ts \" \"nodemon -x tsoa spec-and-routes\"",
     "prebuild": "yarn run tsoa spec-and-routes",
     "build": "tsc",
+    "pretest": "yarn run tsoa spec-and-routes",
     "test": "jest --runInBand",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
