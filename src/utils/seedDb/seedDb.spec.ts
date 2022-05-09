@@ -1,11 +1,11 @@
 import { seedDb } from '.';
-import mockCities from '../../../test/city.list.test.json';
 import { CityModel } from '../../components/cities/models';
+import mockCities from './city.list.test.json';
 
 describe('Seed DB script', () => {
   it('should create records in database', async () => {
     // Act
-    await seedDb('./test/city.list.test.json');
+    await seedDb('./city.list.test.json');
     const cities = await CityModel.find();
     // Assert
     expect(cities.length).toBe(mockCities.length);
