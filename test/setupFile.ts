@@ -15,4 +15,8 @@ afterAll(async () => {
   mswServer.close();
 });
 
-afterEach(() => mswServer.resetHandlers());
+afterEach(async () => {
+  await mongoose.connection.dropDatabase();
+  mswServer.resetHandlers();
+  jest.clearAllMocks();
+});

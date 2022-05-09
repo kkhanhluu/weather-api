@@ -33,16 +33,11 @@ describe('City e2e test', () => {
     },
   ];
 
-  beforeAll(async () => {
-    await CityModel.insertMany(mockCities);
-  });
-
-  afterAll(async () => {
-    await CityModel.deleteMany();
-  });
-
   describe('/GET/:id', () => {
     it('should return status 200', async () => {
+      // Arrange
+      await CityModel.insertMany(mockCities);
+
       // Act
       const res = await request(app).get('/cities/2938913').expect('Content-Type', /json/);
       // Assert
@@ -61,6 +56,9 @@ describe('City e2e test', () => {
 
   describe('/GET/?lat=&lng=', () => {
     it('should return status 200', async () => {
+      // Arrange
+      await CityModel.insertMany(mockCities);
+
       // Act
       const res = await request(app)
         .get('/cities?lat=49.87056&lng=8.64944')
@@ -91,6 +89,8 @@ describe('City e2e test', () => {
 
   describe('/GET/:id/weather', () => {
     it('should return status 200', async () => {
+      // Arrange
+      await CityModel.insertMany(mockCities);
       // Act
       const res = await request(app).get('/cities/2938913/weather').expect('Content-Type', /json/);
       // Assert

@@ -38,21 +38,10 @@ describe('City service', () => {
     },
   ];
 
-  beforeAll(async () => {
-    await CityModel.insertMany(mockCities);
-  });
-
-  afterAll(async () => {
-    await CityModel.deleteMany();
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   describe('Get city by id', () => {
     it('should return city with correct id', async () => {
       // Arrange
+      await CityModel.insertMany(mockCities);
       const spy = jest.spyOn(CityModel, 'findOne');
       // Act
       const city = await cityService.getCityById(mockCities[0].id);
@@ -81,6 +70,7 @@ describe('City service', () => {
   describe('Get cites by location', () => {
     it('should return cities within 10 radius of longitude and latitude', async () => {
       // Arrange
+      await CityModel.insertMany(mockCities);
       const spy = jest.spyOn(CityModel, 'find');
       const latitude = mockCities[0].location.coordinates[1].toString();
       const longitude = mockCities[0].location.coordinates[0].toString();
